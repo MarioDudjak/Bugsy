@@ -1,0 +1,1 @@
+#Android app about showing news from internet using API
