@@ -26,9 +26,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private static final String finalUrl = "http://www.bug.hr/rss/vijesti/";
     Button mButton;
-
+    ListView lvNews;
     List<String> links,descriptions,titles;
     private HandleXML obj;
+    NewsAdapter newsAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void setUpUi() {
         this.mButton = (Button) this.findViewById(R.id.mButton);
         this.mButton.setOnClickListener(this);
+        this.lvNews = (ListView) this.findViewById(R.id.lvNewsList);
     }
 
     @Override
@@ -49,6 +51,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         links=obj.getLinks();
         descriptions=obj.getDescriptions();
         titles=obj.getTitles();
+        List<News> news = new ArrayList<>();
+        news.add(new News(titles.get(0),descriptions.get(0),links.get(0)));
+        news.add(new News(titles.get(1),descriptions.get(1),links.get(1)));
+        news.add(new News(titles.get(2),descriptions.get(2),links.get(2)));
+        news.add(new News(titles.get(3),descriptions.get(3),links.get(3)));
+        news.add(new News(titles.get(4),descriptions.get(4),links.get(4)));
+        this.newsAdapter = new NewsAdapter(news);
+        this.lvNews.setAdapter(this.newsAdapter);
     }
 
 
