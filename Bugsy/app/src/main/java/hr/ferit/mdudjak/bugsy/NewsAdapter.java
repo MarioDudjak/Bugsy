@@ -12,6 +12,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+
 /**
  * Created by Mario on 23.4.2017..
  */
@@ -51,19 +52,25 @@ public class NewsAdapter extends BaseAdapter {
         }
         News news = this.mNews.get(position);
         newsViewHolder.tvTitle.setText(news.getTitle());
-        newsViewHolder.tvDescription.setText(String.valueOf(news.getDescription()));
-        newsViewHolder.tvLink.setText(String.valueOf(news.getLink()));
+        newsViewHolder.tvDescription.setText(news.getDescription());
+        newsViewHolder.tvPubDate.setText(news.getPubDate());
+
+        Picasso.with(parent.getContext())
+                .load(news.getImage())
+                .fit()
+                .centerCrop()
+                .into(newsViewHolder.ivImage);
         return convertView;
     }
 
     static class NewsViewHolder {
-        TextView tvTitle, tvDescription, tvLink;
-
+        TextView tvTitle, tvDescription, tvPubDate;
+        ImageView ivImage;
         public NewsViewHolder(View newsView) {
             this.tvTitle = (TextView) newsView.findViewById(R.id.tvTitle);
             this.tvDescription = (TextView) newsView.findViewById(R.id.tvDescription);
-            this.tvLink = (TextView) newsView.findViewById(R.id.tvLink);
-
+            this.tvPubDate= (TextView) newsView.findViewById(R.id.tvPubDate);
+            this.ivImage = (ImageView) newsView.findViewById(R.id.ivImage);
         }
     }
 }
