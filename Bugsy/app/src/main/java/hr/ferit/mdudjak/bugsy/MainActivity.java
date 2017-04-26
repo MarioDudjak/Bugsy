@@ -2,6 +2,7 @@ package hr.ferit.mdudjak.bugsy;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.ActionMode;
@@ -16,6 +17,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     ListView lvNews;
     List<String> links,descriptions,titles,pubDates,images;
     private HandleXML obj;
+    private SwipeRefreshLayout swipeContainer;
     NewsAdapter newsAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +49,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         this.lvNews = (ListView) this.findViewById(R.id.lvNewsList);
         this.setUpListView();
         this.lvNews.setOnItemClickListener(this);
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeContainer.setRefreshing(false);
+
+            }
+        });
+        
+
     }
+
 
 
 
