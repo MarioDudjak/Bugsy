@@ -12,12 +12,14 @@ public class News{
     private String mTitle;
     private String mPubDate;
     private String mImage;
-    public News(String title, String description, String link, String pubDate,String image){
+    private String mCategory;
+    public News(String title, String description, String link, String pubDate,String image, String category){
         this.mTitle=title;
         this.mDescription=description;
         this.mLink=link;
         this.mPubDate= pubDate;
         this.mImage = image;
+        this.mCategory = category;
     }
 
     public String getTitle() { return mTitle; }
@@ -25,4 +27,5 @@ public class News{
     public String getImage() { return mImage;}
     public String getDescription() { return mDescription; }
     public String getPubDate() { return mPubDate; }
+    public String getCategory() { return mCategory; }
 }

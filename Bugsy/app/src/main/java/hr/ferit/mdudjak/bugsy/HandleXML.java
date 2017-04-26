@@ -18,7 +18,7 @@ import android.util.Log;
 public class HandleXML {
 
     private String urlString = null;
-    List links,titles,descriptions,pubdates,images;
+    List links,titles,descriptions,pubdates,images,categories;
     private XmlPullParserFactory xmlFactoryObject;
     public volatile boolean parsingComplete = true;
 
@@ -41,6 +41,9 @@ public class HandleXML {
     public List getImages(){
         return images;
     }
+    public List getCategories(){
+        return categories;
+    }
 
     public void parseXMLAndStoreIt(XmlPullParser myParser) {
         int event;
@@ -50,6 +53,7 @@ public class HandleXML {
         titles = new ArrayList();
         pubdates = new ArrayList();
         images = new ArrayList();
+        categories = new ArrayList();
         try {
             event = myParser.getEventType();
 
@@ -79,6 +83,9 @@ public class HandleXML {
 
                         else if(name.equals("pubDate")){
                             pubdates.add(text);
+                        }
+                        else if(name.equals("category")){
+                            categories.add(text);
                         }
 
                         else if(name.equals("enclosure")){

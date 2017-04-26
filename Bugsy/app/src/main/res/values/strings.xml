@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Bugsy</string>
+    <string name="etText">Input category name: (e.g. Trendovi, Događaji, Obrazovanje, Tehnologije...)</string>
 </resources>
